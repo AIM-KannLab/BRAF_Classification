@@ -28,7 +28,7 @@ conda env create -f 2d_approach.yml
 ```
 
 ## Usage 
-The pipeline process as a single T2W nifti iamge at once. To run the pipeline on an image, put the raw unprocessed nifti image in the src_ip_dir folder. 
+The pipeline processes a single T2W nifti iamge at once. To run the pipeline on an image, put the raw unprocessed nifti image in the src_ip_dir folder. 
 ```shell 
 cd BRAF_Classification/aidan_segmentation/nnUNet_pLGG/src_ip_dir
 ```
