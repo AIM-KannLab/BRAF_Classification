@@ -1,5 +1,5 @@
 # BRAF Subtype Mutation CLassification 
-> This repository contains the implementation of the scan-to-prediction pipeline for non-invasive molecular subtype classification from paper [link here]  .
+> This repository contains the implementation of the scan-to-prediction pipeline for non-invasive molecular subtype classification from paper [[link here](https://www.medrxiv.org/content/10.1101/2023.08.04.23293673v4)]  .
 
 ![Banner or Screenshot](pipeline.png)
 
