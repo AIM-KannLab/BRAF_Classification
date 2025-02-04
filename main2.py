@@ -12,10 +12,9 @@ import tensorflow as tf
 from data_generator import train_generator
 from data_generator import val_generator
 from generate_model import generate_model
-from transfer_model import transfer_model
-from train import train
+from transfer_model import transfer_model 
 from test import test
-from test_consensus import test_consensus
+#from test_consensus import test_consensus
 from opts import parse_opts
 from statistics.get_stats_plots import get_stats_plots
 
@@ -88,28 +87,7 @@ def main(opt):
                 input_shape=opt.input_shape,
                 activation=opt.activation)
 
-        # train model
-        if opt.train:
-            final_model = train(
-                root_dir=opt.proj_dir,
-                out_dir=out_dir,
-                log_dir=log_dir,
-                model_dir=model_dir,
-                model=my_model,
-                cnn_model=opt.cnn_model,
-                train_gen=train_gen,
-                val_gen=val_gen,
-                x_val=x_val,
-                y_val=y_val,
-                batch_size=opt.batch_size,
-                epoch=opt.epoch,
-                loss_function=opt.loss_function,
-                lr=opt.lr,
-                task=opt.task,
-                freeze_layer=opt.freeze_layer,
-                trained_weights=opt.trained_weights,
-                transfer_learning= opt.transfer_learning)
-            print('training complete!')
+        
 
     # test model
     if opt.test:
@@ -148,7 +126,7 @@ def main(opt):
             thr_prob=opt.thr_prob,
             thr_pos=opt.thr_pos,
             bootstrap=opt.n_bootstrap)
-    if opt.test_consensus:
+    """if opt.test_consensus:
         test_consensus(
             task=opt.task,
             model1=my_model,
@@ -164,7 +142,7 @@ def main(opt):
             threshold=opt.thr_img, 
             activation=opt.activation,
             _load_model=opt._load_model)
-        print('testing complete!')
+        print('testing complete!')"""
     
 
 

@@ -15,7 +15,7 @@
 ---
 
 ## Segmentation
-For the tumor segmentation component, please refer to our dedicated repository [pLGG_Segmentation_docker](https://github.com/AIM-KannLab/pLGG_Segmentation_docker). This repository contains the complete implementation of our expert-level pediatric brain tumor MRI segmentation model, including Docker containerization for easy deployment.
+For the tumor segmentation component, please refer to the repository [pLGG_Segmentation](https://github.com/AIM-KannLab/pLGG_Segmentation). This repository contains the complete implementation of our expert-level pediatric brain tumor MRI segmentation model.
 
 The segmentation pipeline performs two key preprocessing steps:
 1. Registration of the T2W MRI to a standard space and skull stripping 
@@ -39,7 +39,8 @@ conda activate 2d_approach
 
 3. Extract tumor slice indices from the segmentation:
 ```shell
-python get_min_max.py --image path/to/your/t2w_image.nii.gz --mask path/to/your/segmentation_mask.nii.gz
+## pass the path of the preprocessed T2W MRI and its corresponding segmentation mask
+python get_min_max.py --image t2_tr_0000.nii.gz --mask t2_tr_label.nii.gz
 ```
 
 4. Prepare the sliced data for classification:
@@ -50,13 +51,13 @@ python get_BRAF_data_v2.py
 5. Run the classification models:
 ```shell
 # Wildtype classifier
-python pLGG/main2.py --saved_model tumor__wildtype_radimagenet_fusion_crosstrain_fullimage_internaltestasvalidationResNet50_imagenet_23_0.73.h5 --subtype wildtype
+python main2.py --saved_model tumor__wildtype_radimagenet_fusion_crosstrain_fullimage_internaltestasvalidationResNet50_imagenet_23_0.73.h5 --subtype wildtype
 
 # Fusion classifier
-python pLGG/main2.py --saved_model tumor_fusion_radimagenet_fullimage_internaltestasvalidationResNet50_imagenet_21_0.75.h5 --subtype fusion
+python main2.py --saved_model tumor_fusion_radimagenet_fullimage_internaltestasvalidationResNet50_imagenet_21_0.75.h5 --subtype fusion
 
 # V600E classifier
-python pLGG/main2.py --saved_model tumor_v600e_radimagenet_wildtypecrosstrain_filteredv600e_fullimage_internaltestasvalidationResNet50__35_0.73.h5 --subtype v600e
+python main2.py --saved_model tumor_v600e_radimagenet_wildtypecrosstrain_filteredv600e_fullimage_internaltestasvalidationResNet50__35_0.73.h5 --subtype v600e
 ```
 
 6. Generate consensus decision:
@@ -66,7 +67,7 @@ python consensus.py
 
 7. Get final classification result:
 ```shell
-python pLGG/decision.py
+python decision.py
 ```
 
 The final classification output will be printed on the terminal screen along with the running logs. 
